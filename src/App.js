@@ -29,7 +29,8 @@ function App() {
       release: fetchedFilms.release_date,
       language: fetchedFilms.original_language,
       overview: fetchedFilms.overview,
-      streaming: allProviders
+      streaming: allProviders,
+      image: posterPath
     })
   }
 

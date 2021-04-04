@@ -10,6 +10,7 @@ function FilmCard({ film }) {
         <p>Lingua originale: {film.language}</p>
         <p className='Overview'>Overview: {film.overview}</p>
         <p>Streaming: {film.streaming}</p>
+        <img src={film.image}/>
     </div>
   );
 }
