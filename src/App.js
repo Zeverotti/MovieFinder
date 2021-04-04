@@ -21,7 +21,8 @@ function App() {
     const fetchedProviders = services.data
 
     const allProviders = fetchedProviders.results.IT.flatrate.map((e) => e.provider_name).join(', ');
-    const posterPath = path.join('http://image.tmdb.org/t/p/w185/', fetchedFilms.poster_path);
+    const posterPath = path.join('https://image.tmdb.org/t/p/w185/', fetchedFilms.poster_path);
+    console.log(posterPath)
 
     setFilm({
       name: fetchedFilms.title,
