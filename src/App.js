@@ -9,28 +9,17 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
 
   const [film, setFilm] = useState({})
-
-  const [providers, setProviders] = useState([])
-
+  
   const fetchItems = async (query) => {
     console.log(process.env.REACT_APP_KEY)
     const result = await axios(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_KEY}&query=${query}`)
 
     const fetchedFilms = result.data.results[0]
-    console.log(fetchedFilms)
 
     const services = await axios(`https://api.themoviedb.org/3/movie/${fetchedFilms.id}/watch/providers?api_key=${process.env.REACT_APP_KEY}`)
     const fetchedProviders = services.data
-    console.log(fetchedProviders)
 
-    fetchedProviders.results.IT.flatrate.forEach(function(provider) {
-      //console.log(provider.provider_name)
-      setProviders(provider.provider_name)
-      console.log(providers)
-    })
-
-    const allProviders = JSON.stringify(providers)
-    console.log(allProviders)
+    const allProviders = fetchedProviders.results.IT.flatrate.map((e) => e.provider_name).join(', ');
 
     setFilm({
       name: fetchedFilms.title,
