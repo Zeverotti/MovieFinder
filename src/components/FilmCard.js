@@ -11,6 +11,7 @@ function FilmCard({ film }) {
         <p className='Overview'>Overview: {film.overview}</p>
         <p>Streaming: {film.streaming}</p>
         <img src={film.image}/>
+        <p>Similar film: {film.similar}</p>
     </div>
   );
 }

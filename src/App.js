@@ -14,7 +14,7 @@ function App() {
   const fetchItems = async (query) => {
     console.log(process.env.REACT_APP_KEY)
     const result = await axios(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_KEY}&query=${query}`)
-
+    console.log(result)
     const fetchedFilms = result.data.results[0];
 
     if(result.data.results.length === 0) {
@@ -36,13 +36,18 @@ function App() {
 
     const posterPath = path.join('https://image.tmdb.org/t/p/w185/', fetchedFilms.poster_path);
 
+    const similar = await axios(`https://api.themoviedb.org/3/movie/${fetchedFilms.id}/similar?api_key=${process.env.REACT_APP_KEY}&language=en-US&page=1`)
+    console.log(similar)
+    const similarFilm = similar.data.results.map((e) => e.title).join(', ');
+
     setFilm({
       name: fetchedFilms.title,
       release: fetchedFilms.release_date,
       language: fetchedFilms.original_language,
       overview: fetchedFilms.overview,
       streaming: allProviders,
-      image: posterPath
+      image: posterPath,
+      similar: similarFilm
     })
   }
 
