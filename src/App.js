@@ -15,7 +15,11 @@ function App() {
     console.log(process.env.REACT_APP_KEY)
     const result = await axios(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_KEY}&query=${query}`)
 
-    const fetchedFilms = result.data.results[0]
+    const fetchedFilms = result.data.results[0];
+
+    if(result.data.results.length === 0) {
+      return
+    }
 
     const services = await axios(`https://api.themoviedb.org/3/movie/${fetchedFilms.id}/watch/providers?api_key=${process.env.REACT_APP_KEY}`)
     const fetchedProviders = services.data
