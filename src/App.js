@@ -24,13 +24,15 @@ function App() {
     const services = await axios(`https://api.themoviedb.org/3/movie/${fetchedFilms.id}/watch/providers?api_key=${process.env.REACT_APP_KEY}`)
     const fetchedProviders = services.data
 
-    if(fetchedProviders.results.IT.flatrate.length === 0) {
-      return
+
+    let allProviders;
+    try {
+      allProviders = fetchedProviders.results.IT.flatrate.map((e) => e.provider_name).join(', ');
+    } catch (error) {
+      allProviders = 'Not found';
     }
 
-    const allProviders = fetchedProviders.results.IT.flatrate.map((e) => e.provider_name).join(', ');
     const posterPath = path.join('https://image.tmdb.org/t/p/w185/', fetchedFilms.poster_path);
-    console.log(posterPath)
 
     setFilm({
       name: fetchedFilms.title,
