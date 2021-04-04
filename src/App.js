@@ -21,6 +21,8 @@ function App() {
       return
     }
 
+    document.title = query
+
     const services = await axios(`https://api.themoviedb.org/3/movie/${fetchedFilms.id}/watch/providers?api_key=${process.env.REACT_APP_KEY}`)
     const fetchedProviders = services.data
 
