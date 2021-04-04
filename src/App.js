@@ -4,6 +4,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import Form from './components/Form'
 import FilmCard from './components/FilmCard'
+import path from 'path';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -20,6 +21,7 @@ function App() {
     const fetchedProviders = services.data
 
     const allProviders = fetchedProviders.results.IT.flatrate.map((e) => e.provider_name).join(', ');
+    const posterPath = path.join('http://image.tmdb.org/t/p/w185/', fetchedFilms.poster_path);
 
     setFilm({
       name: fetchedFilms.title,
