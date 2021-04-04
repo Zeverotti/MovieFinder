@@ -7,8 +7,9 @@ function FilmCard({ film }) {
     <div className='FilmCard'>
         <p>Titolo: {film.name}</p>
         <p>Release: {film.release}</p>
-        <p>Lingua: {film.language}</p>
+        <p>Lingua originale: {film.language}</p>
         <p className='Overview'>Overview: {film.overview}</p>
+        <p>Streaming: {film.streaming}</p>
     </div>
   );
 }
